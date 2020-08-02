@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components"
 
 interface Button {
-    primary?: boolean
-    light?: boolean
-    small?: boolean
+    primary?: boolean | string
+    light?: boolean | string
+    small?: boolean | string
 }
 
 export const Button = styled.button`

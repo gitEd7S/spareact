@@ -1,4 +1,6 @@
-.input {
+import styled from "styled-components"
+
+export const Input = styled.input`
     width: 100%;
     height: 40px;
     padding: 0 15px;
@@ -7,11 +9,4 @@
     &::placeholder {
         color: #888;
     }
-}
-
-.error {
-    display: block;
-    padding: 7px 0 7px 15px;
-    font-size: 14px;
-    color: red;
-}
+`

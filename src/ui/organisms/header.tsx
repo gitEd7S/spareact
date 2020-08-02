@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { Button, Container } from '../../ui'
 import { Auth } from '../../features/auth'
+import { Modal } from './'
 
 const Links = [
     { id: 1, href: '/profile', name: 'Мой профиль' },
@@ -10,12 +11,6 @@ const Links = [
     { id: 3, href: '/news', name: 'Новисти' },
     { id: 4, href: '/music', name: 'Музыка' },
 ]
-
-interface Links {
-    id: number
-    href: string
-    name: string
-}
 
 const HeaderBox = styled.header`
     padding: 20px 0;
@@ -72,9 +67,15 @@ const UserBoxImage = styled.img`
     object-fit: cover;
 `
 
-const ButtonMarginRight = styled(Button)`
+const LinkStyled = styled(Button)`
     margin-right: 15px;
 `
+
+interface Links {
+    id: number
+    href: string
+    name: string
+}
 
 const Navbar = () => (
     <>
@@ -89,6 +90,8 @@ const Navbar = () => (
 )
 
 export const Header = () => {
+
+    const [isToggle, setToggle] = useState(false)
 
     return (
         <>
@@ -106,16 +109,17 @@ export const Header = () => {
                             />
                         </UserBoxPicture>
                     </UserBox>
-                    <ButtonMarginRight type="button" light>Регистрация</ButtonMarginRight>
+                    <LinkStyled as={Link} to="/registration" light='true'>Регистрация</LinkStyled>
                     <Button
                         primary
                         type="button"
+                        onClick={ () => { setToggle(true) } }
                     >
                         Ввойти
                     </Button>
                 </ContainerHeader>
             </HeaderBox>
-            <Auth />
+            { isToggle && <Modal small setClose={setToggle}><Auth /></Modal> }
         </>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { Button, Modal } from '../../../ui'
+import { Button, Input, Error } from '../../../ui'
 import { validateEmail } from '../../../lib/validators'
 
 const Title = styled.span`
@@ -25,21 +25,16 @@ interface Errors {
     password: string
 }
 
-const messagesErrors = {
-    email: 'Не правильный email',
-    password: 'Заполните это поле',
-} as Errors
-
-const validateAuth = (values: Errors): Object => {
+const validateAuth = ({ email, password }: Errors): Errors => {
     const errors = { } as Errors
-    if(validateEmail(values.email)) errors.email = messagesErrors.email
-    if(!values.password.length) errors.password = messagesErrors.password
+    if (validateEmail(email)) errors.email = 'Не правильный email'
+    if (!password.length) errors.password = 'Заполните это поле'
     return errors
 }
 
 export const Auth = () => {
     return (
-        <Modal small>
+        <>
             <Title>Введите свои данные</Title>
             <Formik
                 initialValues={{ email: '', password: '' }}
@@ -50,33 +45,21 @@ export const Auth = () => {
                 }}
             >
             {
-                ({ isSubmitting }) => (
+                () => (
                     <Form>
                         <Group>
-                            <Field
-                                type="text"
-                                name="email"
-                                placeholder="Введите свой email"
-                                className='form-input input'
-                            />
-                            <ErrorMessage name="email" component="span" className="error" />
+                            <Input as={Field} type="text" name="email" placeholder="Введите свой email" />
+                            <Error as={ErrorMessage} name="email" component="span" />
                         </Group>
                         <Group>
-                            <Field
-                                type="password"
-                                name="password"
-                                placeholder="Введите свой пароль"
-                                className='form-input input'
-                            />
-                            <ErrorMessage name="password" component="span" className="error" />
+                            <Input as={Field} type="password" name="password" placeholder="Введите свой пароль" />
+                            <Error as={ErrorMessage} name="password" component="span" />
                         </Group>
-                        <ButtonStyled primary type="submit" disabled={isSubmitting}>
-                            Ввойти
-                        </ButtonStyled>
+                        <ButtonStyled type="submit" primary>Ввойти</ButtonStyled>
                     </Form>
                 )
             }
             </Formik>
-        </Modal>
+        </>
     )
 }

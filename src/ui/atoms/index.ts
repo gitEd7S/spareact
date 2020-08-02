@@ -1,2 +1,6 @@
+export { ImgCover } from './img-cover'
 export { Button } from './buttons'
 export { Close } from './close'
+export { Input } from './input'
+export { Error } from './errors'
+export { Font } from './font'

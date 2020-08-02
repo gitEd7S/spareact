@@ -1,7 +1,0 @@
-@function w($width, $window) {
-    @return ($width * 100vw) / $window;
-}
-
-@function col($count, $margin) {
-    @return calc(100% / #{$count} - ((#{$margin} * #{$count}) - #{$margin}) / #{$count});
-}

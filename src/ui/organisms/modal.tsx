@@ -4,11 +4,12 @@ import { Close } from '../../ui'
 
 const ModalBox = styled.div`
     position: fixed;
-    display: none;
+    display: block;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 1000;
     background-color: rgba(0, 0, 0, .7);
     overflow: auto;
 `
@@ -23,34 +24,48 @@ const Wrapper = styled.div`
 
 const Inner = styled.div`
     width: 100%;
-    padding: 20px 15px;
-    border-radius: 5px;
+    padding: 30px 25px;
+    border-radius: 2px;
     background-color: white;
-    ${(props: any) => props.small && css`
+    ${(props: ThemesSize) => props.small && css`
         max-width: 320px;
     `}
-    ${(props: any) => props.middle && css`
+    ${(props: ThemesSize) => props.middle && css`
         max-width: 420px;
     `}
-    ${(props: any) => props.large && css`
+    ${(props: ThemesSize) => props.large && css`
         max-width: 520px;
     `}
 `
 
-interface Props {
-    children: any
+const ButtonClose = styled(Close)`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, .1);
+    &:before,
+    &:after {
+        background-color: white;
+    }
+`
+
+interface ThemesSize {
     small?: boolean
     middle?: boolean
     large?: boolean
 }
 
-export const Modal: React.FC<Props> = ({ children }) => {
+interface Props extends ThemesSize {
+    children: any
+    setClose: any
+}
 
+export const Modal: React.FC<Props> = ({ children, small, setClose }) => {
     return (
         <ModalBox>
-            <Close type="button" />
+            <ButtonClose type="button" onClick={ () => setClose(false) } />
             <Wrapper>
-                <Inner>
+                <Inner small>
                     {children}
                 </Inner>
             </Wrapper>
