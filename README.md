@@ -1,5 +1,12 @@
 ## @ - feature
 
+### v-1.3
+**Implemented:**
+- *@ profile `module`*
+- *deleted file useModal*
+- *added type to regEmail*
+- *made the store global*
+
 ### v-1.2
 **Implemented:**
 - *font `css`*
@@ -13,7 +20,7 @@
 - *TypeScript*
 - *Redux*
 - *styled-components*
-**Implemented:** 
+**Implemented:**
 - *global-styles `css`*
 - *Routings*
 - *Header `view`*

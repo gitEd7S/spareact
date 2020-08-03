@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { useActions } from '../../../lib/hooks/useActions'
+import { profileActions, profileSelectors } from '../model'
 import { ImgCover } from '../../../ui'
 import { Label } from '../atoms'
 
@@ -52,13 +55,15 @@ const Input = styled.input`
 
 export const Personal = () => {
 
-    const [ file, setFile ] = useState('https://u-recruit.com.ua/wp-content/uploads/2018/06/SENIOR-FRONT-END-WEB-DEVELOPER-1.jpg')
+    const avatar = useSelector(profileSelectors.getAvatar)
+
+    const { setUpload } = useActions(profileActions)
 
     const changeAvatar = (event: any) => {
         const reader = new FileReader()
         reader.readAsDataURL(event.target.files[0])
         reader.onload = (e: any) => {
-            setFile(e.target.result)
+            setUpload(e.target.result)
         }
     }
 
@@ -66,7 +71,7 @@ export const Personal = () => {
         <Wrapper>
             <Box>
                 <Picture>
-                    <ImgCover src={file} alt="" />
+                    <ImgCover src={avatar} alt="" />
                 </Picture>
                 <UploadAvatar>
                     <Label htmlFor="avatar">Изменить аватар</Label>

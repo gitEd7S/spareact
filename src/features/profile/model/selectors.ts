@@ -1,0 +1,1 @@
+export const getAvatar = (state: any) => (state.profile.avatar)

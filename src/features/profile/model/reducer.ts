@@ -1,15 +1,26 @@
 import * as types from './types'
 
-const initState = {
-    img: 'https://u-recruit.com.ua/wp-content/uploads/2018/06/SENIOR-FRONT-END-WEB-DEVELOPER-1.jpg'
+interface StateProfile {
+    avatar: string
 }
 
-export const reducer = (state = initState, action: any) => {
+interface Reducer {
+    payload: any
+    type: string
+}
+
+const initState = {
+    avatar: 'https://u-recruit.com.ua/wp-content/uploads/2018/06/SENIOR-FRONT-END-WEB-DEVELOPER-1.jpg'
+} as StateProfile
+
+export const reducer = (state = initState, action: Reducer) => {
     const { payload, type } = action
     switch(type) {
         case types.UPLOAD:
-            return state
-
+            return {
+                ...state,
+                avatar: payload
+            }
         default:
             return state
     }
