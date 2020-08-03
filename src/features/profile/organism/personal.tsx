@@ -56,6 +56,7 @@ const Input = styled.input`
 export const Personal = () => {
 
     const avatar = useSelector(profileSelectors.getAvatar)
+    const personal = useSelector(profileSelectors.getPersonal)
 
     const { setUpload } = useActions(profileActions)
 
@@ -85,8 +86,8 @@ export const Personal = () => {
                 </UploadAvatar>
             </Box>
             <Info>
-                <Name>Аноним</Name>
-                <Status>Аноним</Status>
+                <Name>{personal.name}</Name>
+                <Status>{personal.status}</Status>
             </Info>
         </Wrapper>
     )

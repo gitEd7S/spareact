@@ -1,5 +1,9 @@
 ## @ - feature
 
+### v-1.4
+**Implemented:**
+- *added information to personal and header*
+
 ### v-1.3
 **Implemented:**
 - *@ profile `module`*

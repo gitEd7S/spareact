@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { NavLink, Link } from 'react-router-dom'
-import { Button, Container } from '../../ui'
 import { Auth } from '../../features/auth'
+import { profileSelectors } from '../../features/profile/model'
+import { Button, Container } from '../../ui'
 import { Modal } from './'
 
 const Links = [
@@ -93,6 +95,9 @@ export const Header = () => {
 
     const [isToggle, setToggle] = useState(false)
 
+    const personal = useSelector(profileSelectors.getPersonal)
+    const avatar = useSelector(profileSelectors.getAvatar)
+
     return (
         <>
             <HeaderBox>
@@ -101,15 +106,12 @@ export const Header = () => {
                         <Navbar />
                     </NavbarBox>
                     <UserBox>
-                        <UserBoxName>Юзер аноним</UserBoxName>
+                        <UserBoxName>{personal.name}</UserBoxName>
                         <UserBoxPicture>
-                            <UserBoxImage
-                                src="https://www.simplilearn.com/ice9/free_resources_article_thumb/How_to_Become_an_Angular_Developer.jpg"
-                                alt="User"
-                            />
+                            <UserBoxImage src={avatar} alt="User" />
                         </UserBoxPicture>
                     </UserBox>
-                    <LinkStyled as={Link} to="/registration" light='true'>Регистрация</LinkStyled>
+                    <LinkStyled as={Link} to="/registration" light>Регистрация</LinkStyled>
                     <Button
                         primary
                         type="button"

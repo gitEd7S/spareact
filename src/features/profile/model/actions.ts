@@ -1,3 +1,3 @@
 import * as types from './types'
 
-export const setUpload = (payload: any) => ({ type: types.UPLOAD, payload })
+export const setUpload = (payload: any) => ({ type: types.UPLOAD, payload }) // Дописать
