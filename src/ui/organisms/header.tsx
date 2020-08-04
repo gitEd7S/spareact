@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { NavLink, Link } from 'react-router-dom'
 import { Auth } from '../../features/auth'
-import { profileSelectors } from '../../features/profile/model'
+import { UserBox } from '../../features/profile'
 import { Button, Container } from '../../ui'
 import { Modal } from './'
 
@@ -24,6 +23,13 @@ const ContainerHeader = styled(props => <Container {...props} />)`
     justify-content: space-between;
 `
 
+const UserInner = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    margin-left: auto;
+`
+
 const NavbarBox = styled.div`
     display: flex;
     align-items: center;
@@ -39,34 +45,6 @@ const NavLinkStyled = styled(NavLink)`
     &.active {
         color: #3434cc;
     }
-`
-
-const UserBox = styled.div`
-    display: flex;
-    align-items: center;
-    margin-right: 50px;
-    margin-left: auto;
-`
-
-const UserBoxName = styled.span`
-    display: block;
-    margin-right: 10px;
-    font-size: 14px;
-    font-weight: 300;
-`
-
-const UserBoxPicture = styled.figure`
-    display: block;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-`
-
-const UserBoxImage = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 `
 
 const LinkStyled = styled(Button)`
@@ -95,9 +73,6 @@ export const Header = () => {
 
     const [isToggle, setToggle] = useState(false)
 
-    const personal = useSelector(profileSelectors.getPersonal)
-    const avatar = useSelector(profileSelectors.getAvatar)
-
     return (
         <>
             <HeaderBox>
@@ -105,16 +80,13 @@ export const Header = () => {
                     <NavbarBox>
                         <Navbar />
                     </NavbarBox>
-                    <UserBox>
-                        <UserBoxName>{personal.name}</UserBoxName>
-                        <UserBoxPicture>
-                            <UserBoxImage src={avatar} alt="User" />
-                        </UserBoxPicture>
-                    </UserBox>
-                    <LinkStyled as={Link} to="/registration" light>Регистрация</LinkStyled>
+                    <UserInner>
+                        <UserBox />
+                    </UserInner>
+                    <LinkStyled as={Link} to="/registration" light="true">Регистрация</LinkStyled>
                     <Button
-                        primary
                         type="button"
+                        primary
                         onClick={ () => { setToggle(true) } }
                     >
                         Ввойти

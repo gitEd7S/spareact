@@ -11,4 +11,10 @@ export const Label = styled.label`
     background-color: rgba(255, 255, 255, .8);
     cursor: pointer;
     user-select: none;
+    @media screen and (min-width: 992px) {
+        transition-duration: .2s;
+        &:hover {
+            background-color: rgba(255, 255, 255, .9);
+        }
+    }
 `

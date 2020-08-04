@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useActions } from '../../../lib/hooks/useActions'
 import { profileActions, profileSelectors } from '../model'
-import { ImgCover } from '../../../ui'
-import { Label } from '../atoms'
+import { ImgCover, IconEdit } from '../../../ui'
+import { Label, EditPersonal } from '../'
 
 const Wrapper = styled.div`
     display: flex;
@@ -32,14 +32,12 @@ const Name = styled.span`
     display: inline-block;
     font-size: 16px;
     font-weight: 500;
-    margin-bottom: 15px;
 `
 
 const Status = styled.span`
     display: inline-block;
     font-size: 14px;
     font-weight: 300;
-    margin-bottom: 15px;
 `
 
 const UploadAvatar = styled.div`
@@ -53,32 +51,70 @@ const Input = styled.input`
     display: none;
 `
 
+const GroupEdit = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin-bottom: 18px;
+`
+
+const IconWrap = styled.div`
+    width: 15px;
+    height: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+    user-select: none;
+`
+
 export const Personal = () => {
 
     const avatar = useSelector(profileSelectors.getAvatar)
     const personal = useSelector(profileSelectors.getPersonal)
 
-    const { setUpload } = useActions(profileActions)
+    const { setUpload, setEditName, setEditStatus } = useActions(profileActions)
 
-    const changeAvatar = (event: any) => {
-        const reader = new FileReader()
-        reader.readAsDataURL(event.target.files[0])
-        reader.onload = (e: any) => {
-            setUpload(e.target.result)
+    const [name, setName] = useState(false)
+    const [status, setStatus] = useState(false)
+
+    const changeAvatar = (event: any): void => {
+        const reader: any = new FileReader()
+        if(event.target.files.length) {
+            reader.readAsDataURL(event.target.files[0])
+            reader.onload = (e: Event & { target: { result: string } }): void => {
+                setUpload(e.target.result)
+            }
         }
+    }
+
+    const toggleEditName = (): void => {
+        setName(!name)
+        setStatus(false)
+    }
+
+    const toggleEditStatus = (): void => {
+        setStatus(!status)
+        setName(false)
+    }
+
+    const onEditName = (value: string): void => {
+        setEditName(value)
+        setName(false)
+    }
+
+    const onEditStatus = (value: string): void => {
+        setEditStatus(value)
+        setStatus(false)
     }
 
     return (
         <Wrapper>
             <Box>
-                <Picture>
-                    <ImgCover src={avatar} alt="" />
-                </Picture>
+                <Picture><ImgCover src={avatar} alt="" /></Picture>
                 <UploadAvatar>
                     <Label htmlFor="avatar">Изменить аватар</Label>
                     <Input
                         type="file"
-                        name="avatar"
                         id="avatar"
                         accept=".jpg, .jpeg, .png, .svg"
                         onChange={changeAvatar}
@@ -86,8 +122,16 @@ export const Personal = () => {
                 </UploadAvatar>
             </Box>
             <Info>
-                <Name>{personal.name}</Name>
-                <Status>{personal.status}</Status>
+                <GroupEdit>
+                    <Name>{personal.name}</Name>
+                    { name && <EditPersonal defaultValue={personal.name} setEdit={onEditName} /> }
+                    <IconWrap onClick={toggleEditName}><IconEdit fill="#424B5F" /></IconWrap>
+                </GroupEdit>
+                <GroupEdit>
+                    <Status>{personal.status}</Status>
+                    { status && <EditPersonal defaultValue={personal.status} setEdit={onEditStatus} /> }
+                    <IconWrap onClick={toggleEditStatus}><IconEdit fill="#424B5F" /></IconWrap>
+                </GroupEdit>
             </Info>
         </Wrapper>
     )

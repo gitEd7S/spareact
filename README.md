@@ -1,5 +1,12 @@
 ## @ - feature
 
+### v-1.5
+**Implemented:**
+- *partial typing @ profile `module`*
+- *took out part header, in @ profile `module`*
+- *added edit field (name/status) in @ profile `module`*
+- *@ profile `module`*
+
 ### v-1.4
 **Implemented:**
 - *added information to personal and header*

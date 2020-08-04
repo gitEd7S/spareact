@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Container, Header } from '../'
 
 const Main = styled.main`
-    padding-top: 40px;
+    padding-top: 30px;
 `
 
 interface Props {

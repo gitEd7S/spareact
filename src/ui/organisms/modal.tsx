@@ -61,7 +61,6 @@ interface Props extends ThemesSize {
 }
 
 export const Modal: React.FC<Props> = ({ children, small, setClose }) => {
-
     return (
         <ModalBox>
             <ButtonClose type="button" onClick={ () => setClose(false) } />
