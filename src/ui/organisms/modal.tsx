@@ -25,8 +25,9 @@ const Wrapper = styled.div`
 const Inner = styled.div`
     width: 100%;
     padding: 30px 25px;
-    border-radius: 2px;
+    border-radius: 8px;
     background-color: white;
+    box-shadow: -3px -3px 8px #383838;
     ${(props: ThemesSize) => props.small && css`
         max-width: 320px;
     `}
@@ -42,10 +43,17 @@ const ButtonClose = styled(Close)`
     position: absolute;
     top: 10px;
     right: 10px;
+    border-radius: 5px;
     background-color: rgba(255, 255, 255, .1);
     &:before,
     &:after {
         background-color: white;
+    }
+    @media screen and (min-width: 992px) {
+        transition-duration: .3s;
+        &:hover {
+            background-color: rgba(255, 255, 255, .2);
+        }
     }
 `
 

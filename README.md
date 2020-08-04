@@ -1,5 +1,11 @@
 ## @ - feature
 
+### v-1.6
+**Implemented:**
+- *created page friends*
+- *partial typing*
+- *structure blocks in profile*
+
 ### v-1.5
 **Implemented:**
 - *partial typing @ profile `module`*

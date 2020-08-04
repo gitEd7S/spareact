@@ -3,12 +3,14 @@ import { Messages } from './messages'
 import { News } from './news'
 import { Music } from './music'
 import { Registration } from './registration'
+import { Friends } from './friends'
 
 export const routes = () => [
     { path: '/', exact: true, component: Profile },
-    { path: '/profile', exact: true, component: Profile },
-    { path: '/messages', exact: true, component: Messages },
-    { path: '/news', exact: true, component: News },
-    { path: '/music', exact: true, component: Music },
     { path: '/registration', exact: true, component: Registration },
+    { path: '/profile', exact: true, component: Profile },
+    { path: '/friends', exact: true, component: Friends },
+    { path: '/messages', exact: true, component: Messages },
+    { path: '/music', exact: true, component: Music },
+    { path: '/news', exact: true, component: News },
 ]

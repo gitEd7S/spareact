@@ -1,19 +1,6 @@
 import * as types from './types'
 
-interface StateProfile {
-    avatar: string
-    personal: {
-        name: string,
-        status: string,
-    }
-}
-
-interface Reducer {
-    payload: any
-    type: string
-}
-
-const initState: StateProfile = {
+const initState: types.ProfileState = {
     avatar: 'https://u-recruit.com.ua/wp-content/uploads/2018/06/SENIOR-FRONT-END-WEB-DEVELOPER-1.jpg',
     personal: {
         name: 'Первый аноним',
@@ -21,7 +8,7 @@ const initState: StateProfile = {
     }
 }
 
-export const reducer = (state = initState, action: Reducer) => {
+export const reducer = (state = initState, action: types.ProfileActionTypes) => {
     const { payload, type } = action
     switch(type) {
         case types.UPLOAD:

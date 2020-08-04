@@ -22,9 +22,10 @@ const Picture = styled.figure`
     height: 100%;
 `
 
-const Info = styled.div`
+const PersonalBox = styled.div`
     display: flex;
     flex-direction: column;
+    width: calc(100% - 200px);
     padding-left: 30px;
 `
 
@@ -37,6 +38,7 @@ const Name = styled.span`
 const Status = styled.span`
     display: inline-block;
     font-size: 14px;
+    line-height: 18px;
     font-weight: 300;
 `
 
@@ -60,9 +62,10 @@ const GroupEdit = styled.div`
 `
 
 const IconWrap = styled.div`
+    min-width: 15px;
     width: 15px;
     height: 15px;
-    margin-left: 15px;
+    margin-right: 15px;
     cursor: pointer;
     user-select: none;
 `
@@ -74,15 +77,15 @@ export const Personal = () => {
 
     const { setUpload, setEditName, setEditStatus } = useActions(profileActions)
 
-    const [name, setName] = useState(false)
-    const [status, setStatus] = useState(false)
+    const [name, setName] = useState<boolean>(false)
+    const [status, setStatus] = useState<boolean>(false)
 
     const changeAvatar = (event: any): void => {
-        const reader: any = new FileReader()
+        const reader: FileReader = new FileReader()
         if(event.target.files.length) {
             reader.readAsDataURL(event.target.files[0])
-            reader.onload = (e: Event & { target: { result: string } }): void => {
-                setUpload(e.target.result)
+            reader.onload = (): void => {
+                setUpload(reader.result)
             }
         }
     }
@@ -110,7 +113,7 @@ export const Personal = () => {
     return (
         <Wrapper>
             <Box>
-                <Picture><ImgCover src={avatar} alt="" /></Picture>
+                <Picture><ImgCover src={avatar} alt={personal.name} /></Picture>
                 <UploadAvatar>
                     <Label htmlFor="avatar">Изменить аватар</Label>
                     <Input
@@ -121,18 +124,18 @@ export const Personal = () => {
                     />
                 </UploadAvatar>
             </Box>
-            <Info>
+            <PersonalBox>
                 <GroupEdit>
-                    <Name>{personal.name}</Name>
-                    { name && <EditPersonal defaultValue={personal.name} setEdit={onEditName} /> }
                     <IconWrap onClick={toggleEditName}><IconEdit fill="#424B5F" /></IconWrap>
+                    { name && <EditPersonal defaultValue={personal.name} setEdit={onEditName} /> }
+                    <Name>{personal.name}</Name>
                 </GroupEdit>
                 <GroupEdit>
-                    <Status>{personal.status}</Status>
-                    { status && <EditPersonal defaultValue={personal.status} setEdit={onEditStatus} /> }
                     <IconWrap onClick={toggleEditStatus}><IconEdit fill="#424B5F" /></IconWrap>
+                    { status && <EditPersonal defaultValue={personal.status} setEdit={onEditStatus} /> }
+                    <Status>{personal.status}</Status>
                 </GroupEdit>
-            </Info>
+            </PersonalBox>
         </Wrapper>
     )
 }

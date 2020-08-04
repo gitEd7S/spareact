@@ -9,7 +9,7 @@ const PopupInputStyled = styled(PopupInput)`
 const PopupEditStyled = styled(PopupEdit)`
     position: absolute;
     left: 0;
-    top: 25px;
+    top: calc(100% + 10px);
     z-index: 100;
     width: calc(100% + 40px);
     height: 32px;
@@ -22,12 +22,11 @@ const PopupBtnStyled = styled(PopupBtn)`
 
 interface Props {
     defaultValue: string
-    setEdit: any
+    setEdit(value: string): void
 }
 
-export const EditPersonal = (props: Props) => {
-    const { defaultValue, setEdit } = props
-    const [value, setValue] = useState(defaultValue)
+export const EditPersonal: React.FC<Props> = ({ defaultValue, setEdit }) => {
+    const [value, setValue] = useState<string>(defaultValue)
     return (
         <PopupEditStyled>
             <PopupInputStyled

@@ -6,18 +6,18 @@ import { validateEmail } from '../../../lib/validators'
 
 const Title = styled.span`
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 20px;
     text-align: center;
 `
 
 const Group = styled.div`
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 `
 
 const ButtonStyled = styled(Button)`
-    margin: 0 auto;
+    margin: 20px auto 0;
 `
 
 interface Errors {

@@ -8,9 +8,10 @@ import { Modal } from './'
 
 const Links = [
     { id: 1, href: '/profile', name: 'Мой профиль' },
-    { id: 2, href: '/messages', name: 'Сообщение' },
-    { id: 3, href: '/news', name: 'Новисти' },
+    { id: 2, href: '/friends', name: 'Друзья' },
+    { id: 3, href: '/messages', name: 'Сообщение' },
     { id: 4, href: '/music', name: 'Музыка' },
+    { id: 5, href: '/news', name: 'Новисти' },
 ]
 
 const HeaderBox = styled.header`
