@@ -1,5 +1,9 @@
 ## @ - feature
 
+### v-1.8
+**Testing:**
+- *testing saga*
+
 ### v-1.7
 **Implemented:**
 - *created page friends*

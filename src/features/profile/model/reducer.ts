@@ -5,7 +5,8 @@ const initState: types.ProfileState = {
     personal: {
         name: 'Первый аноним',
         status: 'Все буде круто, нужно только поднажать'
-    }
+    },
+    data: []
 }
 
 export const reducer = (state = initState, action: types.ProfileActionTypes) => {
@@ -31,6 +32,11 @@ export const reducer = (state = initState, action: types.ProfileActionTypes) => 
                     name: state.personal.name,
                     status: payload
                 }
+            }
+        case types.TEST:
+            return {
+                ...state,
+                data: payload
             }
         default:
             return state

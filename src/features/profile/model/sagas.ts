@@ -1,14 +1,14 @@
-import { take, put, call, fork, select, all } from 'redux-saga/effects'
+import { put, call } from 'redux-saga/effects'
 import { profileActions } from './index'
 
-const { uploadAvatar } = profileActions
+const { test } = profileActions
 
-export function* sagaSetUpload(payload: string) {
-    yield put(uploadAvatar(payload))
+export function* sagaSetTest() {
+    const payload = yield call(fetchTest)
+    yield put(test(payload))
 }
 
-export function* rootSaga() {
-    yield all([
-        sagaSetUpload
-    ])
+async function fetchTest() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users')
+    return response.json()
 }

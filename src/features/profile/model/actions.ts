@@ -6,4 +6,6 @@ export const editName = (payload: string): { type: string, payload: string } => 
 
 export const editStatus = (payload: string): { type: string, payload: string } => ({ type: types.EDIT_STATUS, payload })
 
+export const test = (payload: string): { type: string, payload: string } => ({ type: types.TEST, payload })
+
 // fetch
