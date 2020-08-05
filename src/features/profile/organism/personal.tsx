@@ -75,7 +75,7 @@ export const Personal = () => {
     const avatar = useSelector(profileSelectors.getAvatar)
     const personal = useSelector(profileSelectors.getPersonal)
 
-    const { setUpload, setEditName, setEditStatus } = useActions(profileActions)
+    const { uploadAvatar, editName, editStatus } = useActions(profileActions)
 
     const [name, setName] = useState<boolean>(false)
     const [status, setStatus] = useState<boolean>(false)
@@ -85,7 +85,7 @@ export const Personal = () => {
         if(event.target.files.length) {
             reader.readAsDataURL(event.target.files[0])
             reader.onload = (): void => {
-                setUpload(reader.result)
+                uploadAvatar(reader.result)
             }
         }
     }
@@ -101,12 +101,12 @@ export const Personal = () => {
     }
 
     const onEditName = (value: string): void => {
-        setEditName(value)
+        editName(value)
         setName(false)
     }
 
     const onEditStatus = (value: string): void => {
-        setEditStatus(value)
+        editStatus(value)
         setStatus(false)
     }
 

@@ -4,7 +4,6 @@ import { NavLink, Link } from 'react-router-dom'
 import { Auth } from '../../features/auth'
 import { UserBox } from '../../features/profile'
 import { Button, Container } from '../../ui'
-import { Modal } from './'
 
 const Links = [
     { id: 1, href: '/profile', name: 'Мой профиль' },
@@ -19,6 +18,7 @@ const HeaderBox = styled.header`
 `
 
 const ContainerHeader = styled(props => <Container {...props} />)`
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -52,6 +52,17 @@ const LinkStyled = styled(Button)`
     margin-right: 15px;
 `
 
+const AuthInner = styled.div`
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    width: 300px;
+    padding: 25px 20px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 1px 2px 5px #b9b9b9;
+`
+
 interface Links {
     id: number
     href: string
@@ -78,23 +89,19 @@ export const Header = () => {
         <>
             <HeaderBox>
                 <ContainerHeader>
-                    <NavbarBox>
-                        <Navbar />
-                    </NavbarBox>
-                    <UserInner>
-                        <UserBox />
-                    </UserInner>
+                    <NavbarBox><Navbar /></NavbarBox>
+                    <UserInner><UserBox /></UserInner>
                     <LinkStyled as={Link} to="/registration" light="true">Регистрация</LinkStyled>
                     <Button
                         type="button"
                         primary
-                        onClick={ () => { setToggle(true) } }
+                        onClick={ () => { setToggle(!isToggle) } }
                     >
                         Ввойти
                     </Button>
+                    { isToggle && <AuthInner><Auth /></ AuthInner> }
                 </ContainerHeader>
             </HeaderBox>
-            { isToggle && <Modal small setClose={setToggle}><Auth /></Modal> }
         </>
     )
 }

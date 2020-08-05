@@ -7,7 +7,7 @@ import { validateEmail } from '../../../lib/validators'
 const Title = styled.span`
     display: block;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
 `
 

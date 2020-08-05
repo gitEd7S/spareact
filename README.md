@@ -6,6 +6,12 @@
 - *partial typing*
 - *structure blocks in profile*
 
+### v-1.6
+**Implemented:**
+- *changed view in auth block*
+- *revision email Regular*
+- *added dependencies in array for useActions*
+
 ### v-1.5
 **Implemented:**
 - *partial typing @ profile `module`*
