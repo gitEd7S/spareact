@@ -1,6 +1,6 @@
 ## @ - feature
 
-### v-1.6
+### v-1.7
 **Implemented:**
 - *created page friends*
 - *partial typing*
