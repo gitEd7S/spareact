@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { NavLink, Link } from 'react-router-dom'
 import { Auth } from '../../features/auth'
@@ -23,6 +23,8 @@ const ContainerHeader = styled(props => <Container {...props} />)`
     align-items: center;
     justify-content: space-between;
 `
+
+const HeaderPopup = styled.div``
 
 const UserInner = styled.div`
     display: flex;
@@ -85,6 +87,19 @@ export const Header = () => {
 
     const [isToggle, setToggle] = useState(false)
 
+    const headerPopupRef = useRef<(HTMLDivElement | any)>(null)
+
+    const outSideAuthInner = (event: any) => {
+        if (isToggle && headerPopupRef && !headerPopupRef.current.contains(event.target)) {
+            setToggle(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', outSideAuthInner)
+        return () => { document.removeEventListener('mousedown', outSideAuthInner) }
+    }, [isToggle])
+
     return (
         <>
             <HeaderBox>
@@ -92,14 +107,16 @@ export const Header = () => {
                     <NavbarBox><Navbar /></NavbarBox>
                     <UserInner><UserBox /></UserInner>
                     <LinkStyled as={Link} to="/registration" light="true">Регистрация</LinkStyled>
-                    <Button
-                        type="button"
-                        primary
-                        onClick={ () => { setToggle(!isToggle) } }
-                    >
-                        Ввойти
-                    </Button>
-                    { isToggle && <AuthInner><Auth /></ AuthInner> }
+                    <HeaderPopup ref={headerPopupRef}>
+                        <Button
+                            type="button"
+                            primary
+                            onClick={ () => { setToggle(!isToggle) } }
+                        >
+                            Ввойти
+                        </Button>
+                        { isToggle && <AuthInner><Auth /></ AuthInner> }
+                    </HeaderPopup>
                 </ContainerHeader>
             </HeaderBox>
         </>

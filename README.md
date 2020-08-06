@@ -1,7 +1,11 @@
 ## @ - feature
 
+### v-1.10
+**Implemented:**
+- *implementationed outside popup*
+
 ### v-1.9
-**Testing:**
+**Implemented:**
 - *click outside the element*
 - *implementationed sagas in @ profile*
 

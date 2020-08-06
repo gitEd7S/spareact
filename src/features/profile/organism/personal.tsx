@@ -74,11 +74,9 @@ export const Personal = () => {
 
     const groupEditElemets = useRef<(HTMLDivElement | null)[]>([])
 
-    const { current }: any = groupEditElemets
-
-    const avatar = useSelector(profileSelectors.getAvatar)
-    const personalName = useSelector(profileSelectors.getName)
-    const personalStatus = useSelector(profileSelectors.getStatus)
+    const avatar: string = useSelector(profileSelectors.getAvatar)
+    const personalName: string = useSelector(profileSelectors.getName)
+    const personalStatus: string = useSelector(profileSelectors.getStatus)
 
     const { uploadAvatar, editName, editStatus } = useActions(profileActions)
 
@@ -87,7 +85,7 @@ export const Personal = () => {
 
     const changeAvatar = (event: any): void => {
         const reader: FileReader = new FileReader()
-        if(event.target.files.length) {
+        if (event.target.files.length) {
             reader.readAsDataURL(event.target.files[0])
             reader.onload = (): void => {
                 uploadAvatar(reader.result)
@@ -115,19 +113,19 @@ export const Personal = () => {
         setStatus(false)
     }
 
-    const outEditPersonal = (event: any) => {
-        const { current }: any = groupEditElemets
-        console.log(groupEditElemets)
-        if(name || status && current && !current.contains(event.target)) {
+    const outSideEditPersonal = (event: any) => {
+        const isToggle: boolean = name || status
+        const elemets: any = groupEditElemets.current
+        const elemetsLength: boolean = elemets.length
+        if (isToggle && elemetsLength && !elemets[0].contains(event.target) && !elemets[1].contains(event.target)) {
             setName(false)
             setStatus(false)
         }
     }
 
     useEffect(() => {
-        console.log(groupEditElemets)
-        document.addEventListener('mousedown', outEditPersonal)
-        return () => { document.removeEventListener('mousedown', outEditPersonal) }
+        document.addEventListener('mousedown', outSideEditPersonal)
+        return () => { document.removeEventListener('mousedown', outSideEditPersonal) }
     }, [name, status])
 
     return (
@@ -145,12 +143,12 @@ export const Personal = () => {
                 </UploadAvatar>
             </Box>
             <PersonalBox>
-                <GroupEdit ref={(ref: any) => { current.push(ref) }}>
+                <GroupEdit ref={(ref: any) => { groupEditElemets.current.push(ref) }}>
                     <IconWrap onClick={toggleEditName}><IconEdit fill="#424B5F" /></IconWrap>
                     { name && <EditPersonal defaultValue={personalName} setEdit={onEditName} /> }
                     <Name>{personalName}</Name>
                 </GroupEdit>
-                <GroupEdit ref={(ref: any) => { current.push(ref) }}>
+                <GroupEdit ref={(ref: any) => { groupEditElemets.current.push(ref) }}>
                     <IconWrap onClick={toggleEditStatus}><IconEdit fill="#424B5F" /></IconWrap>
                     { status && <EditPersonal defaultValue={personalStatus} setEdit={onEditStatus} /> }
                     <Status>{personalStatus}</Status>
