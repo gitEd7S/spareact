@@ -1,14 +1,34 @@
-import { put, call } from 'redux-saga/effects'
-import { profileActions } from './index'
+import { put, takeEvery, delay, all } from 'redux-saga/effects'
+import * as types from './types'
 
-const { test } = profileActions
+// @REDUCER: UPLOAD
+function* watcherUpload() { yield takeEvery(types.WATCHER_UPLOAD, workerUpload) }
 
-export function* sagaSetTest() {
-    const payload = yield call(fetchTest)
-    yield put(test(payload))
+function* workerUpload({ payload }: { type: string, payload: string }) {
+    yield delay(500)
+    yield put({ type: types.UPLOAD, payload })
 }
 
-async function fetchTest() {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users')
-    return response.json()
+// @REDUCER: EDIT_NAME
+function* watcherEditName() { yield takeEvery(types.WATCHER_EDIT_NAME, workerEditName) }
+
+function* workerEditName({ payload }: { type: string, payload: string }) {
+    yield delay(500)
+    yield put({ type: types.EDIT_NAME, payload })
+}
+
+// @REDUCER: EDIT_STATUS
+function* watcherEditStatus() { yield takeEvery(types.WATCHER_EDIT_STATUS, workerEditStatus) }
+
+function* workerEditStatus({ payload }: { type: string, payload: string }) {
+    yield delay(500)
+    yield put({ type: types.EDIT_STATUS, payload })
+}
+
+export function* sagas() {
+    yield all([
+        watcherUpload(),
+        watcherEditName(),
+        watcherEditStatus()
+    ])
 }

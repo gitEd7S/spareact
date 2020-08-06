@@ -1,15 +1,23 @@
 import * as types from './types'
 
-const initState: types.ProfileState = {
-    avatar: 'https://u-recruit.com.ua/wp-content/uploads/2018/06/SENIOR-FRONT-END-WEB-DEVELOPER-1.jpg',
-    personal: {
-        name: 'Первый аноним',
-        status: 'Все буде круто, нужно только поднажать'
-    },
-    data: []
+interface ProfileState {
+    avatar: string
+    name: string,
+    status: string,
 }
 
-export const reducer = (state = initState, action: types.ProfileActionTypes) => {
+interface ProfileActionTypes {
+    payload: string
+    type: string
+}
+
+const initState: ProfileState = {
+    avatar: 'https://u-recruit.com.ua/wp-content/uploads/2018/06/SENIOR-FRONT-END-WEB-DEVELOPER-1.jpg',
+    name: 'Первый аноним',
+    status: 'Все буде круто, нужно только поднажать'
+}
+
+export const reducer = (state = initState, action: ProfileActionTypes) => {
     const { payload, type } = action
     switch(type) {
         case types.UPLOAD:
@@ -20,23 +28,12 @@ export const reducer = (state = initState, action: types.ProfileActionTypes) => 
         case types.EDIT_NAME:
             return {
                 ...state,
-                personal: {
-                    name: payload,
-                    status: state.personal.status
-                }
+                name: payload,
             }
         case types.EDIT_STATUS:
             return {
                 ...state,
-                personal: {
-                    name: state.personal.name,
-                    status: payload
-                }
-            }
-        case types.TEST:
-            return {
-                ...state,
-                data: payload
+                status: payload
             }
         default:
             return state

@@ -1,7 +1,7 @@
 import { reducer } from './reducer'
 import * as selectors from './selectors'
 import * as actions from './actions'
-import * as sagas from './sagas'
+import { sagas } from './sagas'
 
 export {
     reducer as profileReducer,

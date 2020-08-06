@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useActions } from '../../../lib/hooks/useActions'
@@ -72,8 +72,13 @@ const IconWrap = styled.div`
 
 export const Personal = () => {
 
+    const groupEditElemets = useRef<(HTMLDivElement | null)[]>([])
+
+    const { current }: any = groupEditElemets
+
     const avatar = useSelector(profileSelectors.getAvatar)
-    const personal = useSelector(profileSelectors.getPersonal)
+    const personalName = useSelector(profileSelectors.getName)
+    const personalStatus = useSelector(profileSelectors.getStatus)
 
     const { uploadAvatar, editName, editStatus } = useActions(profileActions)
 
@@ -110,10 +115,25 @@ export const Personal = () => {
         setStatus(false)
     }
 
+    const outEditPersonal = (event: any) => {
+        const { current }: any = groupEditElemets
+        console.log(groupEditElemets)
+        if(name || status && current && !current.contains(event.target)) {
+            setName(false)
+            setStatus(false)
+        }
+    }
+
+    useEffect(() => {
+        console.log(groupEditElemets)
+        document.addEventListener('mousedown', outEditPersonal)
+        return () => { document.removeEventListener('mousedown', outEditPersonal) }
+    }, [name, status])
+
     return (
         <Wrapper>
             <Box>
-                <Picture><ImgCover src={avatar} alt={personal.name} /></Picture>
+                <Picture><ImgCover src={avatar} alt={personalName} /></Picture>
                 <UploadAvatar>
                     <Label htmlFor="avatar">Изменить аватар</Label>
                     <Input
@@ -125,15 +145,15 @@ export const Personal = () => {
                 </UploadAvatar>
             </Box>
             <PersonalBox>
-                <GroupEdit>
+                <GroupEdit ref={(ref: any) => { current.push(ref) }}>
                     <IconWrap onClick={toggleEditName}><IconEdit fill="#424B5F" /></IconWrap>
-                    { name && <EditPersonal defaultValue={personal.name} setEdit={onEditName} /> }
-                    <Name>{personal.name}</Name>
+                    { name && <EditPersonal defaultValue={personalName} setEdit={onEditName} /> }
+                    <Name>{personalName}</Name>
                 </GroupEdit>
-                <GroupEdit>
+                <GroupEdit ref={(ref: any) => { current.push(ref) }}>
                     <IconWrap onClick={toggleEditStatus}><IconEdit fill="#424B5F" /></IconWrap>
-                    { status && <EditPersonal defaultValue={personal.status} setEdit={onEditStatus} /> }
-                    <Status>{personal.status}</Status>
+                    { status && <EditPersonal defaultValue={personalStatus} setEdit={onEditStatus} /> }
+                    <Status>{personalStatus}</Status>
                 </GroupEdit>
             </PersonalBox>
         </Wrapper>

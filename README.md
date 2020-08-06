@@ -1,5 +1,10 @@
 ## @ - feature
 
+### v-1.9
+**Testing:**
+- *click outside the element*
+- *implementationed sagas in @ profile*
+
 ### v-1.8
 **Testing:**
 - *testing saga*
