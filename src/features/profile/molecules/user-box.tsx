@@ -20,13 +20,12 @@ const CirclePicture = styled.figure`
 `
 
 export const UserBox = () => {
-    const avatar = useSelector(profileSelectors.getAvatar)
-    const name = useSelector(profileSelectors.getName)
+    const profile = useSelector(profileSelectors.getProfile)
     return (
         <>
-            <Name>{name}</Name>
+            <Name>{profile.name}</Name>
             <CirclePicture>
-                <ImgCover src={avatar} alt="User" />
+                <ImgCover src={profile.avatar} alt="User" />
             </CirclePicture>
         </>
     )

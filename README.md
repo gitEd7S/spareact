@@ -1,5 +1,9 @@
 ## @ - feature
 
+### v-1.11
+**Implemented:**
+- *useSelectors in @profile*
+
 ### v-1.10
 **Implemented:**
 - *implementationed outside popup*
@@ -7,7 +11,7 @@
 ### v-1.9
 **Implemented:**
 - *click outside the element*
-- *implementationed sagas in @ profile*
+- *implementationed sagas in @profile*
 
 ### v-1.8
 **Testing:**
@@ -27,9 +31,9 @@
 
 ### v-1.5
 **Implemented:**
-- *partial typing @ profile `module`*
-- *took out part header, in @ profile `module`*
-- *added edit field (name/status) in @ profile `module`*
+- *partial typing @profile `module`*
+- *took out part header, in @profile `module`*
+- *added edit field (name/status) in @profile `module`*
 - *@ profile `module`*
 
 ### v-1.4
@@ -61,5 +65,5 @@
 - *Routings*
 - *Header `view`*
 - *Template `view`*
-- *@ auth `view`*
-- *@ profile `view`*
+- *@auth `view`*
+- *@profile `view`*

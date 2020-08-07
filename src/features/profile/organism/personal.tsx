@@ -74,9 +74,7 @@ export const Personal = () => {
 
     const groupEditElemets = useRef<(HTMLDivElement | null)[]>([])
 
-    const avatar: string = useSelector(profileSelectors.getAvatar)
-    const personalName: string = useSelector(profileSelectors.getName)
-    const personalStatus: string = useSelector(profileSelectors.getStatus)
+    const profile: any = useSelector(profileSelectors.getProfile)
 
     const { uploadAvatar, editName, editStatus } = useActions(profileActions)
 
@@ -131,7 +129,7 @@ export const Personal = () => {
     return (
         <Wrapper>
             <Box>
-                <Picture><ImgCover src={avatar} alt={personalName} /></Picture>
+                <Picture><ImgCover src={profile.avatar} alt={profile.name} /></Picture>
                 <UploadAvatar>
                     <Label htmlFor="avatar">Изменить аватар</Label>
                     <Input
@@ -145,13 +143,13 @@ export const Personal = () => {
             <PersonalBox>
                 <GroupEdit ref={(ref: any) => { groupEditElemets.current.push(ref) }}>
                     <IconWrap onClick={toggleEditName}><IconEdit fill="#424B5F" /></IconWrap>
-                    { name && <EditPersonal defaultValue={personalName} setEdit={onEditName} /> }
-                    <Name>{personalName}</Name>
+                    { name && <EditPersonal defaultValue={profile.name} setEdit={onEditName} /> }
+                    <Name>{profile.name}</Name>
                 </GroupEdit>
                 <GroupEdit ref={(ref: any) => { groupEditElemets.current.push(ref) }}>
                     <IconWrap onClick={toggleEditStatus}><IconEdit fill="#424B5F" /></IconWrap>
-                    { status && <EditPersonal defaultValue={personalStatus} setEdit={onEditStatus} /> }
-                    <Status>{personalStatus}</Status>
+                    { status && <EditPersonal defaultValue={profile.status} setEdit={onEditStatus} /> }
+                    <Status>{profile.status}</Status>
                 </GroupEdit>
             </PersonalBox>
         </Wrapper>
