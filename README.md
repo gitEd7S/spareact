@@ -1,5 +1,9 @@
 ## @ - feature
 
+### v-1.12
+**Implemented:**
+- *partial typing*
+
 ### v-1.11
 **Implemented:**
 - *useSelectors in @profile*

@@ -32,7 +32,7 @@ const validateAuth = ({ email, password }: Errors): Errors => {
     return errors
 }
 
-export const Auth = () => {
+export const Auth: React.FC = () => {
     return (
         <>
             <Title>Введите свои данные</Title>

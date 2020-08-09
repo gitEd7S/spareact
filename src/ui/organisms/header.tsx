@@ -85,7 +85,7 @@ const Navbar = () => (
 
 export const Header = () => {
 
-    const [isToggle, setToggle] = useState(false)
+    const [isToggle, setToggle] = useState<boolean>(false)
 
     const headerPopupRef = useRef<(HTMLDivElement | any)>(null)
 

@@ -70,9 +70,13 @@ const IconWrap = styled.div`
     user-select: none;
 `
 
-export const Personal = () => {
+interface Event<T = EventTarget> {
+    target: T;
+}
 
-    const groupEditElemets = useRef<(HTMLDivElement | null)[]>([])
+export const Personal: React.FC = () => {
+
+    const groupEditElemets = useRef<(HTMLDivElement)[]>([])
 
     const profile: any = useSelector(profileSelectors.getProfile)
 
@@ -81,10 +85,10 @@ export const Personal = () => {
     const [name, setName] = useState<boolean>(false)
     const [status, setStatus] = useState<boolean>(false)
 
-    const changeAvatar = (event: any): void => {
+    const changeAvatar = (event: Event<HTMLInputElement>): void => {
         const reader: FileReader = new FileReader()
-        if (event.target.files.length) {
-            reader.readAsDataURL(event.target.files[0])
+        if (event.target.files!.length) {
+            reader.readAsDataURL(event.target.files![0])
             reader.onload = (): void => {
                 uploadAvatar(reader.result)
             }
@@ -113,9 +117,9 @@ export const Personal = () => {
 
     const outSideEditPersonal = (event: any) => {
         const isToggle: boolean = name || status
-        const elemets: any = groupEditElemets.current
-        const elemetsLength: boolean = elemets.length
-        if (isToggle && elemetsLength && !elemets[0].contains(event.target) && !elemets[1].contains(event.target)) {
+        const elemets: Array<HTMLElement> = groupEditElemets.current
+        const elemetsLength: number = elemets.length
+        if (isToggle && elemetsLength && !elemets[0].contains(event.target) && !elemets[1].contains(event!.target)) {
             setName(false)
             setStatus(false)
         }
@@ -141,12 +145,12 @@ export const Personal = () => {
                 </UploadAvatar>
             </Box>
             <PersonalBox>
-                <GroupEdit ref={(ref: any) => { groupEditElemets.current.push(ref) }}>
+                <GroupEdit ref={(ref: HTMLDivElement) => { groupEditElemets.current.push(ref) }}>
                     <IconWrap onClick={toggleEditName}><IconEdit fill="#424B5F" /></IconWrap>
                     { name && <EditPersonal defaultValue={profile.name} setEdit={onEditName} /> }
                     <Name>{profile.name}</Name>
                 </GroupEdit>
-                <GroupEdit ref={(ref: any) => { groupEditElemets.current.push(ref) }}>
+                <GroupEdit ref={(ref: HTMLDivElement) => { groupEditElemets.current.push(ref) }}>
                     <IconWrap onClick={toggleEditStatus}><IconEdit fill="#424B5F" /></IconWrap>
                     { status && <EditPersonal defaultValue={profile.status} setEdit={onEditStatus} /> }
                     <Status>{profile.status}</Status>

@@ -19,7 +19,7 @@ const CirclePicture = styled.figure`
     overflow: hidden;
 `
 
-export const UserBox = () => {
+export const UserBox: React.FC = () => {
     const profile = useSelector(profileSelectors.getProfile)
     return (
         <>
