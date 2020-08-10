@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Template } from '../../ui'
 import { Personal } from '../../features/profile'
+import { ProfileTemplate } from '../../features/news'
 
 const ProfileRow = styled.div`
     display: flex;
@@ -55,9 +56,7 @@ const ProfileMusic = styled.div`
 `
 
 const ProfileNews = styled.div`
-    flex: auto;
-    padding: 15px 20px;
-    background-color: #e6e6e6;
+    width: 18.96%;
     @media screen and (max-width: 1559px) {
         width: 50%;
         margin-top: 50px;
@@ -78,7 +77,9 @@ export const Profile = () => {
                     <Line />
                     <ProfileMusic>Music</ProfileMusic>
                     <Line />
-                    <ProfileNews>News</ProfileNews>
+                    <ProfileNews>
+                        <ProfileTemplate />
+                    </ProfileNews>
                 </ProfileRow>
             </Template>
         </>

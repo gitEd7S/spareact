@@ -128,7 +128,7 @@ export const Personal: React.FC = () => {
     useEffect(() => {
         document.addEventListener('mousedown', outSideEditPersonal)
         return () => { document.removeEventListener('mousedown', outSideEditPersonal) }
-    }, [name, status])
+    })
 
     return (
         <Wrapper>

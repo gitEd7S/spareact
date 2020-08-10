@@ -1,5 +1,10 @@
 ## @ - feature
 
+### v-1.13
+**Implemented:**
+- *@news*
+- *partial typing*
+
 ### v-1.12
 **Implemented:**
 - *partial typing*

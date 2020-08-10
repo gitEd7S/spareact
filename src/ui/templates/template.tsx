@@ -6,11 +6,7 @@ const Main = styled.main`
     padding-top: 40px;
 `
 
-interface Props {
-    children: any
-}
-
-export const Template: React.FC<Props> = ({ children }) => {
+export const Template: React.FC = ({ children }) => {
     return (
         <>
             <Header />

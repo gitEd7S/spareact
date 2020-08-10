@@ -98,7 +98,7 @@ export const Header = () => {
     useEffect(() => {
         document.addEventListener('mousedown', outSideAuthInner)
         return () => { document.removeEventListener('mousedown', outSideAuthInner) }
-    }, [isToggle])
+    })
 
     return (
         <>

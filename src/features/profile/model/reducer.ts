@@ -6,7 +6,7 @@ const initState: types.ProfileState = {
     status: 'Все буде круто, нужно только поднажать'
 }
 
-export const reducer = (state = initState, action: types.ProfileActionTypes) => {
+export const reducer = (state = initState, action: types.ActionParams) => {
     const { payload, type } = action
     switch(type) {
         case types.UPLOAD:
