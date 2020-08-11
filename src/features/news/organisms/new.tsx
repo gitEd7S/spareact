@@ -3,13 +3,10 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { ImgCover } from '../../../ui'
 
-const Box = styled.div`
-    width: 100%;
-`
-
 const PictureBox = styled.div`
     position: relative;
     width: 100%;
+    font-size: 0;
 `
 
 const Date = styled.span`
@@ -18,8 +15,10 @@ const Date = styled.span`
     right: 0;
     top: 0;
     padding: 10px 15px;
-    background-color: rgba(255, 255, 255, .8);
     text-align: right;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: rgba(255, 255, 255, .7);
 `
 
 const BodyBox = styled.div`
@@ -29,33 +28,49 @@ const BodyBox = styled.div`
 const Name = styled.span`
     display: block;
     font-size: 16px;
+    line-height: 20px;
     margin-bottom: 10px;
 `
 
 const Description = styled.p`
-    display: block;
+    display: -webkit-box;
+    height: calc(17px * 2);
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    margin-bottom: 20px;
     font-size: 14px;
+    line-height: 17px;
     color: #888888;
+    overflow: hidden;
 `
 
 const LinkStyled = styled(Link)`
     display: block;
+    width: fit-content;
+    margin-left: auto;
     font-size: 14px;
-    color: blue;
+    color: #1769b7;
 `
 
-export const New: React.FC = () => {
+interface Props {
+    store: any
+}
+
+export const New: React.FC<Props> = ({ store }) => {
     return (
-        <Box>
+        <>
             <PictureBox>
-                <Date>05.06.20</Date>
-                <ImgCover src="https://biz.liga.net/images/general/2017/07/05/201707050820342645.jpg?v=1520566161" alt="Новости" />
+                <Date>{store.date}</Date>
+                <ImgCover src={store.img.url} alt={store.img.alt} />
             </PictureBox>
             <BodyBox>
-                <Name>Новости</Name>
-                <Description>Короткий опис новини</Description>
-                <LinkStyled to='/news' />
+                <Name>{store.name}</Name>
+                <Description>{store.description}</Description>
+                <LinkStyled to='/news'>
+                    Читать далее
+                </LinkStyled>
             </BodyBox>
-        </Box>
+        </>
     )
 }

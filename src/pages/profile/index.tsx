@@ -32,14 +32,12 @@ const ProfileFriends = styled.div`
     min-height: 400px;
     padding: 15px 20px;
     margin-top: 30px;
-    background-color: #e6e6e6;
 `
 
 const ProfileMessage = styled.div`
     width: 20%;
     min-height: 350px;
     padding: 15px 20px;
-    background-color: #e6e6e6;
     @media screen and (max-width: 1559px) {
         width: 50%;
     }
@@ -48,7 +46,6 @@ const ProfileMessage = styled.div`
 const ProfileMusic = styled.div`
     width: 18%;
     padding: 15px 20px;
-    background-color: #e6e6e6;
     @media screen and (max-width: 1559px) {
         width: 50%;
         margin-top: 50px;

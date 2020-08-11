@@ -10,7 +10,7 @@ const Links = [
     { id: 2, href: '/friends', name: 'Друзья' },
     { id: 3, href: '/messages', name: 'Сообщение' },
     { id: 4, href: '/music', name: 'Музыка' },
-    { id: 5, href: '/news', name: 'Новисти' },
+    { id: 5, href: '/news', name: 'Новости' },
 ]
 
 const HeaderBox = styled.header`
@@ -58,10 +58,11 @@ const AuthInner = styled.div`
     position: absolute;
     top: 60px;
     right: 15px;
+    z-index: 1000;
     width: 300px;
     padding: 25px 20px;
     border-radius: 5px;
-    background-color: white;
+    background-color: #f7f7f7;
     box-shadow: 1px 2px 5px #b9b9b9;
 `
 
