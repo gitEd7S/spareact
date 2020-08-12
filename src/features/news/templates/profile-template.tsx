@@ -2,11 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { newsSelectors } from '../model'
-import { ProfileNew } from '../'
-
-const ListNews = styled.div`
-    width: 100%;
-`
+import { New } from '../'
 
 const Title = styled.h3`
     display: block;
@@ -15,6 +11,10 @@ const Title = styled.h3`
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
+`
+
+const ListNews = styled.div`
+    width: 100%;
 `
 
 const NewBox = styled.div`
@@ -35,7 +35,7 @@ export const ProfileTemplate: React.FC = () => {
                 {
                     news.length && news.map((item: any) => (
                         <NewBox key={item.id}>
-                            <ProfileNew data={item} />
+                            <New data={item} />
                         </NewBox>
                     ))
                 }

@@ -1,5 +1,9 @@
 ## @ - feature
 
+### v-1.16
+**Implemented:**
+- *@news : sagas*
+
 ### v-1.15
 **Implemented:**
 - *@news : sagas*

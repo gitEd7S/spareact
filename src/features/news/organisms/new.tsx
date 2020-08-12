@@ -6,7 +6,9 @@ import { ImgCover } from '../../../ui'
 const PictureBox = styled.div`
     position: relative;
     width: 100%;
+    height: 200px;
     font-size: 0;
+    overflow: hidden;
 `
 
 const Date = styled.span`
@@ -22,6 +24,9 @@ const Date = styled.span`
 `
 
 const BodyBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 200px);
     padding: 10px 0;
 `
 
@@ -49,6 +54,7 @@ const LinkStyled = styled(NavLink)`
     display: block;
     width: fit-content;
     margin-left: auto;
+    margin-top: auto;
     font-size: 14px;
     color: #1769b7;
 `
@@ -57,7 +63,7 @@ interface Props {
     data: any
 }
 
-export const ProfileNew: React.FC<Props> = ({ data }) => {
+export const New: React.FC<Props> = ({ data }) => {
     const { id, date, img, name, description } = data
     return (
         <>
