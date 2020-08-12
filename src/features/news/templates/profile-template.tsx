@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { newsSelectors } from '../model'
-import { New } from '../'
+import { ProfileNew } from '../'
 
 const ListNews = styled.div`
     width: 100%;
@@ -28,8 +28,6 @@ export const ProfileTemplate: React.FC = () => {
 
     const news = useSelector(newsSelectors.getNews)
 
-    console.log(news)
-
     return (
         <>
             <Title>Последние новости</Title>
@@ -37,7 +35,7 @@ export const ProfileTemplate: React.FC = () => {
                 {
                     news.length && news.map((item: any) => (
                         <NewBox key={item.id}>
-                            <New store={item} />
+                            <ProfileNew data={item} />
                         </NewBox>
                     ))
                 }

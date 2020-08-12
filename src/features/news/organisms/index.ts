@@ -1,1 +1,1 @@
-export { New } from './new'
+export { ProfileNew } from './profile-new'

@@ -63,7 +63,7 @@ const AuthInner = styled.div`
     padding: 25px 20px;
     border-radius: 5px;
     background-color: #f7f7f7;
-    box-shadow: 1px 2px 5px #b9b9b9;
+    box-shadow: 1px 2px 5px #878787;
 `
 
 interface Links {

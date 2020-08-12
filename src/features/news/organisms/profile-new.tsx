@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { ImgCover } from '../../../ui'
 
@@ -45,7 +45,7 @@ const Description = styled.p`
     overflow: hidden;
 `
 
-const LinkStyled = styled(Link)`
+const LinkStyled = styled(NavLink)`
     display: block;
     width: fit-content;
     margin-left: auto;
@@ -54,22 +54,21 @@ const LinkStyled = styled(Link)`
 `
 
 interface Props {
-    store: any
+    data: any
 }
 
-export const New: React.FC<Props> = ({ store }) => {
+export const ProfileNew: React.FC<Props> = ({ data }) => {
+    const { id, date, img, name, description } = data
     return (
         <>
             <PictureBox>
-                <Date>{store.date}</Date>
-                <ImgCover src={store.img.url} alt={store.img.alt} />
+                <Date>{date}</Date>
+                <ImgCover src={img.url} alt={img.alt} />
             </PictureBox>
             <BodyBox>
-                <Name>{store.name}</Name>
-                <Description>{store.description}</Description>
-                <LinkStyled to='/news'>
-                    Читать далее
-                </LinkStyled>
+                <Name>{name}</Name>
+                <Description>{description}</Description>
+                <LinkStyled to={`/new/${id}`}>Читать далее</LinkStyled>
             </BodyBox>
         </>
     )

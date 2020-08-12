@@ -4,22 +4,34 @@ import * as types from './types'
 function* watcherUpload() { yield takeEvery(types.WATCHER_UPLOAD, workerUpload) }
 
 function* workerUpload({ payload }: types.ActionParams) {
-    yield delay(500)
-    yield put({ type: types.UPLOAD, payload })
+    try {
+        yield delay(500)
+        yield put({ type: types.UPLOAD, payload })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 function* watcherEditName() { yield takeEvery(types.WATCHER_EDIT_NAME, workerEditName) }
 
 function* workerEditName({ payload }: types.ActionParams) {
-    yield delay(500)
-    yield put({ type: types.EDIT_NAME, payload })
+    try {
+        yield delay(500)
+        yield put({ type: types.EDIT_NAME, payload })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 function* watcherEditStatus() { yield takeEvery(types.WATCHER_EDIT_STATUS, workerEditStatus) }
 
 function* workerEditStatus({ payload }: types.ActionParams) {
-    yield delay(500)
-    yield put({ type: types.EDIT_STATUS, payload })
+    try {
+        yield delay(500)
+        yield put({ type: types.EDIT_STATUS, payload })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export function* sagas() {
