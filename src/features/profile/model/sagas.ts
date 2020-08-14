@@ -3,7 +3,7 @@ import * as types from './types'
 
 function* watcherUpload() { yield takeEvery(types.WATCHER_UPLOAD, workerUpload) }
 
-function* workerUpload({ payload }: types.ActionParams) {
+function* workerUpload({ payload }: { type: string, payload: string }) {
     try {
         yield delay(500)
         yield put({ type: types.UPLOAD, payload })
@@ -14,7 +14,7 @@ function* workerUpload({ payload }: types.ActionParams) {
 
 function* watcherEditName() { yield takeEvery(types.WATCHER_EDIT_NAME, workerEditName) }
 
-function* workerEditName({ payload }: types.ActionParams) {
+function* workerEditName({ payload }: { type: string, payload: string }) {
     try {
         yield delay(500)
         yield put({ type: types.EDIT_NAME, payload })
@@ -25,7 +25,7 @@ function* workerEditName({ payload }: types.ActionParams) {
 
 function* watcherEditStatus() { yield takeEvery(types.WATCHER_EDIT_STATUS, workerEditStatus) }
 
-function* workerEditStatus({ payload }: types.ActionParams) {
+function* workerEditStatus({ payload }: { type: string, payload: string }) {
     try {
         yield delay(500)
         yield put({ type: types.EDIT_STATUS, payload })

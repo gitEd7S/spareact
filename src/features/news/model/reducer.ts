@@ -1,6 +1,26 @@
 import * as types from './types'
+import { ActionType } from 'typesafe-actions'
+import * as news from './actions'
 
-const initState: any = {
+type ActionParamsType = { type: string, payload: any }
+
+export type NewsStateType = {
+    id: number,
+    date: string,
+    author: string,
+    name: string,
+    img: {
+        url: string,
+        alt: string,
+    },
+    description: string,
+}
+
+export interface INewsState {
+    news: Array<NewsStateType>
+}
+
+const initState: INewsState = {
     news: [
         {
             id: 1,
@@ -57,22 +77,11 @@ const initState: any = {
             },
             description: 'Хотя блок питания того или иного устройства, как правило, обладает немаленьким количеством различных защит от "скачков" в электрической сети, он не может позволить безопасно выключить устройство при резком его обесточивании.'
         },
-        {
-            id: 6,
-            date: '10.05.2020',
-            author: 'Jon Garen',
-            name: 'EnerGenie EG-UPS-B650 - UPS для "маленьких"!',
-            img: {
-                url: 'https://www.goldsecurity.com/wp-content/uploads/2017/03/IT-security-Fake-News-1024x683.jpg',
-                alt: 'EnerGenie EG-UPS-B650 - UPS для "маленьких"!'
-            },
-            description: 'Хотя блок питания того или иного устройства, как правило, обладает немаленьким количеством различных защит от "скачков" в электрической сети, он не может позволить безопасно выключить устройство при резком его обесточивании.'
-        },
     ]
 }
 
-export const reducer = (state = initState, action: any) => {
-    const { payload, type } = action
+export const reducer = (state = initState, action: ActionParamsType) => {
+    const { type, payload } = action
     switch(type) {
         case types.NEWS:
             return {

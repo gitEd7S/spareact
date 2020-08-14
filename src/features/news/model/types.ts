@@ -1,15 +1,3 @@
-export const [NEWS, WATCHER_NEWS] = ['news/NEWS', 'news/WATCHER_NEWS']
-
-export interface NewsState {
-    news: [
-        {
-            id: number,
-            date: string,
-            author: string,
-            title: string,
-            image: string,
-            description: string,
-        }
-    ]
-}
+export const NEWS = 'news/LIST'
+export const WATCHER_NEWS = 'news/WATCHER_NEWS'
 

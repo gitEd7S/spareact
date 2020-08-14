@@ -1,3 +1,4 @@
-import * as types from './types'
+import { IProfileState } from './reducer'
 
-export const getProfile = (state: { profile: types.ProfileState }) => (state.profile)
+type GetProfileType = { profile: IProfileState }
+export const getProfile = (state: GetProfileType) => (state.profile)
