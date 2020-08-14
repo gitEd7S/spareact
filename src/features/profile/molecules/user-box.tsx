@@ -20,7 +20,7 @@ const CirclePicture = styled.figure`
 `
 
 export const UserBox: React.FC = () => {
-    const profile: { name: string, avatar: string } = useSelector(profileSelectors.getProfile)
+    const profile = useSelector(profileSelectors.getProfile)
     return (
         <>
             <Name>{profile.name}</Name>

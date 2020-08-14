@@ -1,6 +1,6 @@
 import * as types from './types'
 
-type ActionParamsType = { type: string, payload: string }
+interface IActionParams { type: string, payload: string }
 
 export interface IProfileState {
     avatar: string
@@ -14,7 +14,7 @@ const initState: IProfileState = {
     status: 'Все буде круто, нужно только поднажать'
 }
 
-export const reducer = (state = initState, action: ActionParamsType) => {
+export const reducer = (state = initState, action: IActionParams): IProfileState => {
     const { payload, type } = action
     switch(type) {
         case types.UPLOAD:

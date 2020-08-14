@@ -59,11 +59,11 @@ const LinkStyled = styled(NavLink)`
     color: #1769b7;
 `
 
-interface Props {
+interface IProps {
     data: any
 }
 
-export const New: React.FC<Props> = ({ data }) => {
+export const New: React.FC<IProps> = ({ data }) => {
     const { id, date, img, name, description } = data
     return (
         <>

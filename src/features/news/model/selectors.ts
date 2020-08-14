@@ -1,4 +1,4 @@
-import { INewsState } from './reducer'
+import { INewsState, INewsTemplate } from './reducer'
 
-type TGetNews = { news: INewsState }
-export const getNews = (state: TGetNews) => (state.news.news)
+interface IGetNews { news: INewsState }
+export const getNews = (state: IGetNews): Array<INewsTemplate> => (state.news.news)

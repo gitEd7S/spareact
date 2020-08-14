@@ -1,10 +1,10 @@
 import * as types from './types'
-import { ActionType } from 'typesafe-actions'
-import * as news from './actions'
+// import { ActionType } from 'typesafe-actions'
+// import * as news from './actions'
 
-type ActionParamsType = { type: string, payload: any }
+interface IActionParams { type: string, payload: any }
 
-export type NewsStateType = {
+export interface INewsTemplate {
     id: number,
     date: string,
     author: string,
@@ -15,9 +15,8 @@ export type NewsStateType = {
     },
     description: string,
 }
-
 export interface INewsState {
-    news: Array<NewsStateType>
+    news: Array<INewsTemplate>
 }
 
 const initState: INewsState = {
@@ -80,13 +79,13 @@ const initState: INewsState = {
     ]
 }
 
-export const reducer = (state = initState, action: ActionParamsType) => {
+export const reducer = (state = initState, action: IActionParams): INewsState => {
     const { type, payload } = action
     switch(type) {
         case types.NEWS:
             return {
                 ...state,
-                news: state.news.push(payload)
+                news: state.news.concat(payload)
             }
         default:
             return state

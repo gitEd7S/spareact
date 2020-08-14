@@ -1,9 +1,15 @@
 import { put, takeEvery, delay, all } from 'redux-saga/effects'
 import * as types from './types'
 
+interface IUpload {
+    type: string
+    payload: string
+}
+
 function* watcherUpload() { yield takeEvery(types.WATCHER_UPLOAD, workerUpload) }
 
-function* workerUpload({ payload }: { type: string, payload: string }) {
+function* workerUpload(action: IUpload) {
+    const { payload } = action
     try {
         yield delay(500)
         yield put({ type: types.UPLOAD, payload })
@@ -12,9 +18,15 @@ function* workerUpload({ payload }: { type: string, payload: string }) {
     }
 }
 
+interface IEditName {
+    type: string
+    payload: string
+}
+
 function* watcherEditName() { yield takeEvery(types.WATCHER_EDIT_NAME, workerEditName) }
 
-function* workerEditName({ payload }: { type: string, payload: string }) {
+function* workerEditName(action: IEditName) {
+    const { payload } = action
     try {
         yield delay(500)
         yield put({ type: types.EDIT_NAME, payload })
@@ -23,9 +35,15 @@ function* workerEditName({ payload }: { type: string, payload: string }) {
     }
 }
 
+interface IEditStatus {
+    type: string
+    payload: string
+}
+
 function* watcherEditStatus() { yield takeEvery(types.WATCHER_EDIT_STATUS, workerEditStatus) }
 
-function* workerEditStatus({ payload }: { type: string, payload: string }) {
+function* workerEditStatus(action: IEditStatus) {
+    const { payload } = action
     try {
         yield delay(500)
         yield put({ type: types.EDIT_STATUS, payload })

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useActions } from '../../../lib/hooks/useActions'
@@ -70,7 +70,7 @@ const IconWrap = styled.div`
     user-select: none;
 `
 
-interface Event<T = EventTarget> {
+interface IEvent<T = EventTarget> {
     target: T;
 }
 
@@ -78,14 +78,14 @@ export const Personal: React.FC = () => {
 
     const groupEditElemets = useRef<(HTMLDivElement)[]>([])
 
-    const profile: any = useSelector(profileSelectors.getProfile)
+    const profile = useSelector(profileSelectors.getProfile)
 
     const { uploadAvatar, editName, editStatus } = useActions(profileActions)
 
     const [name, setName] = useState<boolean>(false)
     const [status, setStatus] = useState<boolean>(false)
 
-    const changeAvatar = (event: Event<HTMLInputElement>): void => {
+    const changeAvatar = (event: IEvent<HTMLInputElement>): void => {
         const reader: FileReader = new FileReader()
         if (event.target.files!.length) {
             reader.readAsDataURL(event.target.files![0])
@@ -115,7 +115,7 @@ export const Personal: React.FC = () => {
         setStatus(false)
     }
 
-    const outSideEditPersonal = (event: any) => {
+    const outSideEditPersonal = useCallback((event: any) => {
         const isToggle: boolean = name || status
         const elemets: Array<HTMLElement> = groupEditElemets.current
         const elemetsLength: number = elemets.length
@@ -123,7 +123,7 @@ export const Personal: React.FC = () => {
             setName(false)
             setStatus(false)
         }
-    }
+    }, [name, status])
 
     useEffect(() => {
         document.addEventListener('mousedown', outSideEditPersonal)

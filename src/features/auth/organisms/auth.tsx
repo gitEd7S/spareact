@@ -20,13 +20,13 @@ const ButtonStyled = styled(Button)`
     margin: 20px auto 0;
 `
 
-interface Errors {
+interface IErrors {
     email: string
     password: string
 }
 
-const validateAuth = ({ email, password }: Errors): Errors => {
-    const errors = { } as Errors
+const validateAuth = ({ email, password }: IErrors): IErrors => {
+    const errors = { } as IErrors
     if (validateEmail(email)) errors.email = 'Не правильный email'
     if (!password.length) errors.password = 'Заполните это поле'
     return errors

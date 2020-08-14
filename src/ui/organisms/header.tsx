@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { NavLink, Link } from 'react-router-dom'
 import { Auth } from '../../features/auth'
@@ -66,16 +66,16 @@ const AuthInner = styled.div`
     box-shadow: 1px 2px 5px #878787;
 `
 
-interface Links {
+interface ILinks {
     id: number
     href: string
     name: string
 }
 
-const Navbar = () => (
+const Navbar: React.FC = () => (
     <>
         {
-            Links.length && Links.map((link: Links) => (
+            Links.length && Links.map((link: ILinks) => (
                 <NavLinkStyled exact to={link.href} key={link.id}>
                     {link.name}
                 </NavLinkStyled>
@@ -84,17 +84,17 @@ const Navbar = () => (
     </>
 )
 
-export const Header = () => {
+export const Header: React.FC = () => {
 
     const [isToggle, setToggle] = useState<boolean>(false)
 
-    const headerPopupRef = useRef<(HTMLDivElement | any)>(null)
+    const headerPopupRef = useRef<HTMLDivElement>(null)
 
-    const outSideAuthInner = (event: any) => {
-        if (isToggle && headerPopupRef && !headerPopupRef.current.contains(event.target)) {
+    const outSideAuthInner = useCallback((event: any) => {
+        if (isToggle && !headerPopupRef.current?.contains(event.target)) {
             setToggle(false)
         }
-    }
+    }, [isToggle])
 
     useEffect(() => {
         document.addEventListener('mousedown', outSideAuthInner)
@@ -112,7 +112,7 @@ export const Header = () => {
                         <Button
                             type="button"
                             primary
-                            onClick={ () => { setToggle(!isToggle) } }
+                            onClick={ (): void => { setToggle(!isToggle) } }
                         >
                             Ввойти
                         </Button>

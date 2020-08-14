@@ -4,7 +4,7 @@ import { GlobalStyles } from './global-styles'
 import { Normalize } from './normalize'
 import { Font } from './ui'
 
-export const App = () => {
+export const App: React.FC = () => {
     return (
         <>
             <Font />

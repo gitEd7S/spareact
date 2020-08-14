@@ -20,12 +20,12 @@ const PopupBtnStyled = styled(PopupBtn)`
     height: 100%;
 `
 
-interface Props {
+interface IProps {
     defaultValue: string
     setEdit(value: string): void
 }
 
-export const EditPersonal: React.FC<Props> = ({ defaultValue, setEdit }) => {
+export const EditPersonal: React.FC<IProps> = ({ defaultValue, setEdit }) => {
     const [value, setValue] = useState<string>(defaultValue)
     return (
         <PopupEditStyled>
@@ -33,7 +33,7 @@ export const EditPersonal: React.FC<Props> = ({ defaultValue, setEdit }) => {
                 value={value}
                 onChange={(e): void => setValue(e.target.value)}
             />
-            <PopupBtnStyled onClick={() => setEdit(value)}>Ред.</PopupBtnStyled>
+            <PopupBtnStyled onClick={(): void => setEdit(value)}>Ред.</PopupBtnStyled>
         </PopupEditStyled>
     )
 }

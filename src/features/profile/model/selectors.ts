@@ -1,4 +1,4 @@
 import { IProfileState } from './reducer'
 
-type GetProfileType = { profile: IProfileState }
-export const getProfile = (state: GetProfileType) => (state.profile)
+interface IGetProfile { profile: IProfileState }
+export const getProfile = (state: IGetProfile): IProfileState => (state.profile)
