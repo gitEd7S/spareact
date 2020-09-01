@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { newsSelectors } from '../model'
+import { useActions } from '../../../lib/hooks/useActions'
+import { newsSelectors, newsActions } from '../model'
 import { New } from '../'
 
 const Title = styled.h3`
@@ -31,6 +32,12 @@ const NewBox = styled.div`
 export const NewsTemplate: React.FC = () => {
 
     const news = useSelector(newsSelectors.getNews)
+
+    const { newsAction } = useActions(newsActions)
+
+    useEffect(() => {
+        newsAction()
+    }, [])
 
     return (
         <>

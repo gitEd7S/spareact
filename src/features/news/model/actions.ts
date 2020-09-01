@@ -1,8 +1,11 @@
 import * as types from './types'
-import { INewsTemplate } from './reducer'
 
-interface INews {
-    type: typeof types.WATCHER_NEWS,
-    payload: Array<INewsTemplate>
+interface IProfileNews { type: typeof types.WATCHER_NEWS_PROFILE }
+export const newsProfileAction = (): IProfileNews => {
+    return ({ type: types.WATCHER_NEWS_PROFILE })
 }
-export const news = (payload: Array<INewsTemplate>): INews => ({ type: types.WATCHER_NEWS, payload })
+
+interface INews { type: typeof types.WATCHER_NEWS }
+export const newsAction = (): INews => {
+    return ({ type: types.WATCHER_NEWS })
+}

@@ -1,5 +1,9 @@
 ## @ - feature
 
+### v-1.18
+**Implemented:**
+- *@News*
+
 ### v-1.17
 **Implemented:**
 - *typesafe-actions need to connect - url(example): https://github.com/piotrwitek/react-redux-typescript-guide/blob/master/playground/src/features/counters/reducer.ts*

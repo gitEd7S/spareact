@@ -1,28 +1,34 @@
-import { put, takeEvery, delay, call, all } from 'redux-saga/effects'
+import { put, takeEvery, delay, all } from 'redux-saga/effects'
+import { fetchProfileNews, fetchNews } from './../../../api/news'
 import * as types from './types'
 
-/*
-    @ Нужно количество указать
-    @ Сделать один слушатель на страницу Profile или общий ?
-*/
+function* watcherNewsProfile() { yield takeEvery(types.WATCHER_NEWS_PROFILE, workerNewsProfile) }
 
-function* watcherNews() { yield takeEvery(types.WATCHER_NEWS, workerNews) }
-
-function* workerNews() {
+function* workerNewsProfile() {
+    yield delay(500)
     try {
-        const news = call(fetchNews)
-        yield put({ type: types.NEWS, news })
+        const news = yield fetchProfileNews()
+        yield put({ type: types.NEWS_PROFILE, payload: news })
     } catch (error) {
         console.log(error)
     }
 }
 
-function* fetchNews() {
+function* watcherNews() { yield takeEvery(types.WATCHER_NEWS, workerNews) }
+
+function* workerNews() {
     yield delay(500)
+    try {
+        const news = yield fetchNews()
+        yield put({ type: types.NEWS, payload: news })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export function* sagas() {
     yield all([
+        watcherNewsProfile(),
         watcherNews()
     ])
 }
